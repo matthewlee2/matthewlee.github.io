@@ -46,7 +46,7 @@ def count_chars(sentence):
     print(c, "appears", counts[c], "times")
 count_chars(r.complete)
 ```
-Here, I created a function in Python that counts the number of each character in a sentence. Then, I used the function for my complete sentence from R. As such, I made a funtion in Python and used it on an R string! Based on the results, "e" was the most common letter in my sentence, appearing 6 times. Also, my sentence has 10 spaces.
+Here, I created a function(count_chars) in Python that counts the number of each character in a sentence. Then, I used the function for my complete sentence from R. As such, I made a funtion in Python and used it on an R string! Based on the results, "e" was the most common letter in my sentence, appearing 6 times. Also, my sentence has 10 spaces.
 ```{R}
 #R Code Chunk
 rstring<-"Thank you for reading this blog!"
@@ -56,7 +56,8 @@ rstring<-"Thank you for reading this blog!"
 #Python Code Chunk
 count_chars(r.rstring)
 ```
-Lastly, to show this function again, I created one last string in R. I then used Python and my Python function in order to count the individual characters in my R string! Using R and Python allows you to get the best of both languages. As I stated in my last R string, thank you for reading this blog!
+Lastly, to show the count_chars function again, I created one last string in R. I then used Python and my Python function in order to count the individual characters in my R string! Using R and Python allows you to get the best of both languages. As I stated in my last R string, thank you for reading this blog!
+[In honor of Pre Covid-19 times, here is a picture I took from a UT football game last year.](/post/2020-12-07-r-and-python-interaction_files/0B9928E9-BF40-42BC-BC73-694463ED3C7C.JPG) 
 
 
 
