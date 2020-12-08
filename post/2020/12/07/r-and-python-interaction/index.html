@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Matthew Lee" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../img/favicon.ico">
+    <title>R and Python Interaction</title>
+    <meta name="generator" content="Hugo 0.79.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../../../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../../../../../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../../../../../post/">BLOG</a></li>
+        
+        <li><a href="../../../../../projects/">PROJECTS</a></li>
+        
+        <li><a href="../../../../../resume/">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../../../../../post/2020/12/07/r-and-python-interaction/">R and Python Interaction</a></strong>
+          </h3>
+        </div>
+ 
+<div class="blog-title">
+          <h4>
+         December 7, 2020 
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+<link href="../../../../../rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="../../../../../rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>Below, I will use R and Python together and show both languages interacting with each other. Why? While it may seem like a hassle to use both R and Python, each have pros and cons. For instance, R is usually better for most statistical techniques, but Python is better for neural nets. In my example, I will build a complete string/sentence using both R and Python in order to demonstrate how to switch back and forth.</p>
+<pre class="r"><code>library(stringr)
+library(reticulate)</code></pre>
+<p>This reticulate package will help me intergrate python into R studio.</p>
+<pre class="r"><code>#R Code Chunk
+string&lt;-&quot;This string will be used to interact between &quot;
+nchar(string)</code></pre>
+<pre><code>## [1] 45</code></pre>
+<p>Above, I created a string in R with 45 characters. This sentence is obviously not complete, so I will add to it below:</p>
+<pre class="python"><code>#Python Code Chunk
+string1=&quot;Python&quot;
+string_both=r.string + string1
+print(string_both)</code></pre>
+<pre><code>## This string will be used to interact between Python</code></pre>
+<p>Now, I created a string in Python. I then combined the R string and Python string into one Python string and printed it out! My sentence is almost done, so let's complete it below in R:</p>
+<pre class="r"><code>#R Code Chunk
+complete&lt;-str_c(py$string_both, &quot;and R.&quot;, sep=&quot; &quot;, collapse=NULL)
+complete</code></pre>
+<pre><code>## [1] &quot;This string will be used to interact between Python and R.&quot;</code></pre>
+<pre class="r"><code>nchar(complete)</code></pre>
+<pre><code>## [1] 58</code></pre>
+<p>Finally, I completed the final part of my sentence in R, and I have a complete sentence with 58 characters. Remember, my original string in R only had 45 characters. How many characters of each letter do I have in my sentence? I'll use Python below to find out:</p>
+<pre class="python"><code>#Python Code Chunk
+def count_chars(sentence):
+  counts={}
+  for c in sentence:
+      if c in counts:
+          counts[c]+=1
+      else:
+          counts[c]=1
+  for c in counts:
+    print(c, &quot;appears&quot;, counts[c], &quot;times&quot;)
+count_chars(r.complete)</code></pre>
+<pre><code>## T appears 1 times
+## h appears 2 times
+## i appears 4 times
+## s appears 3 times
+##   appears 10 times
+## t appears 6 times
+## r appears 2 times
+## n appears 5 times
+## g appears 1 times
+## w appears 2 times
+## l appears 2 times
+## b appears 2 times
+## e appears 6 times
+## u appears 1 times
+## d appears 2 times
+## o appears 2 times
+## a appears 2 times
+## c appears 1 times
+## P appears 1 times
+## y appears 1 times
+## R appears 1 times
+## . appears 1 times</code></pre>
+<p>Here, I created a function in Python that counts the number of each character in a sentence. Then, I used the function for my complete sentence from R. As such, I made a funtion in Python and used it on an R string! Based on the results, &quot;e&quot; was the most common letter in my sentence, appearing 6 times. Also, my sentence has 10 spaces.</p>
+<pre class="r"><code>#R Code Chunk
+rstring&lt;-&quot;Thank you for reading this blog!&quot;</code></pre>
+<pre class="python"><code>#Python Code Chunk
+count_chars(r.rstring)</code></pre>
+<pre><code>## T appears 1 times
+## h appears 2 times
+## a appears 2 times
+## n appears 2 times
+## k appears 1 times
+##   appears 5 times
+## y appears 1 times
+## o appears 3 times
+## u appears 1 times
+## f appears 1 times
+## r appears 2 times
+## e appears 1 times
+## d appears 1 times
+## i appears 2 times
+## g appears 2 times
+## t appears 1 times
+## s appears 1 times
+## b appears 1 times
+## l appears 1 times
+## ! appears 1 times</code></pre>
+<p>Lastly, to show this function again, I created one last string in R. I then used Python and my Python function in order to count the individual characters in my R string! Using R and Python allows you to get the best of both languages. As I stated in my last R string, thank you for reading this blog!</p>
+
+            
+        <hr>         <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div> 
+            </div>
+          </div>
+
+   <hr>  <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div> 
+        </div>
+      </div>
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../../../../js/docs.min.js"></script>
+<script src="../../../../../js/main.js"></script>
+
+<script src="../../../../../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

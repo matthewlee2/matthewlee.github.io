@@ -6,14 +6,14 @@
     <description>Recent content on Matthew Lee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>First Post</title>
-      <link>/post/2020/12/04/first-post/</link>
-      <pubDate>Fri, 04 Dec 2020 00:00:00 +0000</pubDate>
+      <title>R and Python Interaction</title>
+      <link>/post/2020/12/07/r-and-python-interaction/</link>
+      <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020/12/04/first-post/</guid>
-      <description>  </description>
+      <guid>/post/2020/12/07/r-and-python-interaction/</guid>
+      <description>Below, I will use R and Python together and show both languages interacting with each other. Why? While it may seem like a hassle to use both R and Python, each have pros and cons. For instance, R is usually better for most statistical techniques, but Python is better for neural nets. In my example, I will build a complete string/sentence using both R and Python in order to demonstrate how to switch back and forth.</description>
     </item>
     
     <item>

@@ -1,0 +1,68 @@
+---
+title: R and Python Interaction
+author: Matthew Lee
+date: '2020-12-07'
+slug: r-and-python-interaction
+categories: []
+tags: []
+description: ''
+---
+Below, I will use R and Python together and show both languages interacting with each other. Why? While it may seem like a hassle to use both R and Python, each have pros and cons. For instance, R is usually better for most statistical techniques, but Python is better for neural nets. In my example, I will build a complete string/sentence using both R and Python in order to demonstrate how to switch back and forth.
+```{R}
+library(stringr)
+library(reticulate)
+```
+This reticulate package will help me intergrate python into R studio. 
+```{R}
+#R Code Chunk
+string<-"This string will be used to interact between "
+nchar(string)
+```
+Above, I created a string in R with 45 characters. This sentence is obviously not complete, so I will add to it below: 
+```{python}
+#Python Code Chunk
+string1="Python"
+string_both=r.string + string1
+print(string_both)
+```
+Now, I created a string in Python. I then combined the R string and Python string into one Python string and printed it out! My sentence is almost done, so let's complete it below in R:
+```{R}
+#R Code Chunk
+complete<-str_c(py$string_both, "and R.", sep=" ", collapse=NULL)
+complete
+nchar(complete)
+```
+Finally, I completed the final part of my sentence in R, and I have a complete sentence with 58 characters. Remember, my original string in R only had 45 characters. How many characters of each letter do I have in my sentence? I'll use Python below to find out:
+```{python}
+#Python Code Chunk
+def count_chars(sentence):
+  counts={}
+  for c in sentence:
+      if c in counts:
+          counts[c]+=1
+      else:
+          counts[c]=1
+  for c in counts:
+    print(c, "appears", counts[c], "times")
+count_chars(r.complete)
+```
+Here, I created a function in Python that counts the number of each character in a sentence. Then, I used the function for my complete sentence from R. As such, I made a funtion in Python and used it on an R string! Based on the results, "e" was the most common letter in my sentence, appearing 6 times. Also, my sentence has 10 spaces.
+```{R}
+#R Code Chunk
+rstring<-"Thank you for reading this blog!"
+```
+
+```{python}
+#Python Code Chunk
+count_chars(r.rstring)
+```
+Lastly, to show this function again, I created one last string in R. I then used Python and my Python function in order to count the individual characters in my R string! Using R and Python allows you to get the best of both languages. As I stated in my last R string, thank you for reading this blog!
+
+
+
+
+
+
+
+
+
